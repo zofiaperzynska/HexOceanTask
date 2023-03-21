@@ -1,6 +1,6 @@
-import { Dish } from "./Form.types";
+import { Option } from "./Form.types";
 
-export const DISHES: Dish[] = [
+export const DISHES: Option[] = [
   {
     label: "Pizza",
     value: "pizza",

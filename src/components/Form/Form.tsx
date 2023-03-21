@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Dayjs } from "dayjs";
-import { MenuItem, Grid, Typography } from "@mui/material";
+import {
+  MenuItem,
+  Grid,
+  Typography,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import { TimeField } from "@mui/x-date-pickers";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import {
@@ -9,6 +15,8 @@ import {
   DISHES,
   INTEGER_REGEX,
   FLOAT_REGEX,
+  DARK_BLUE,
+  LIGHT_BLUE,
 } from "./Form.consts";
 import { CustomTextField, CustomButton, CustomAvatar } from "./Form.styled";
 import PizzaInputs from "../SpecificInputs/PizzaInputs";
@@ -28,6 +36,7 @@ const Form = () => {
   const [timeValue, setTimeValue] = useState<Dayjs | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [successSubmit, setSuccessSubmit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputNoOfSlicesHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -106,6 +115,7 @@ const Form = () => {
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/",
@@ -114,7 +124,9 @@ const Form = () => {
       console.log(response.data);
       setSuccessSubmit(true);
       clearForm();
+      setIsLoading(false);
     } catch (error: unknown) {
+      setIsLoading(false);
       if (axios.isAxiosError(error)) {
         setErrorMessage(JSON.stringify(error.response?.data));
         return;
@@ -175,6 +187,12 @@ const Form = () => {
         successSubmit={successSubmit}
         closeSuccessAlertHandler={closeSuccessAlertHandler}
       />
+      <Backdrop
+        sx={{ color: "#f1f1e6", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress sx={{ color: `${DARK_BLUE}` }} />
+      </Backdrop>
       <form onSubmit={submitHandler}>
         <Card>
           <Grid container spacing={2}>
@@ -191,7 +209,7 @@ const Form = () => {
                   marginBottom: 30,
                   display: "flex",
                   justifyContent: "center",
-                  color: "#003973",
+                  color: `${DARK_BLUE}`,
                 }}
               >
                 HexOcean Dish Form
@@ -217,14 +235,14 @@ const Form = () => {
                 required
                 sx={{
                   "& label.Mui-focused": {
-                    color: "#2bb7e2",
+                    color: `${LIGHT_BLUE}`,
                   },
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#003973",
+                      borderColor: `${DARK_BLUE}`,
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#2bb7e2",
+                      borderColor: `${LIGHT_BLUE}`,
                     },
                   },
                 }}

@@ -35,3 +35,7 @@ export const MARKS = [
     label: "spicy",
   },
 ];
+
+export const LIGHT_BLUE = "#2bb7e2";
+
+export const DARK_BLUE = "#003973";

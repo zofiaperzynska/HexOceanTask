@@ -3,43 +3,44 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Slider from "@mui/material/Slider";
+import { LIGHT_BLUE, DARK_BLUE } from "./Form.consts";
 
 export const CustomTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "#2bb7e2",
+    color: `${LIGHT_BLUE}`,
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#003973",
+      borderColor: `${DARK_BLUE}`,
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#2bb7e2",
+      borderColor: `${LIGHT_BLUE}`,
     },
   },
 });
 
 export const CustomButton = styled(Button)({
-  backgroundColor: "#003973",
+  backgroundColor: `${DARK_BLUE}`,
   "&:hover": {
-    backgroundColor: "#2bb7e2",
+    backgroundColor: `${LIGHT_BLUE}`,
   },
 });
 
 export const CustomAvatar = styled(Avatar)({
   m: 1,
-  backgroundColor: "#003973",
+  backgroundColor: `${DARK_BLUE}`,
   display: "flex",
   justifyContent: "center",
 });
 
 export const CustomSlider = styled(Slider)({
   "& .MuiSlider-thumb": {
-    color: "#003973",
+    color: `${DARK_BLUE}`,
   },
   "& .MuiSlider-track": {
-    color: "#003973",
+    color: `${DARK_BLUE}`,
   },
   "& .MuiSlider-rail": {
-    color: "#003973",
+    color: `${DARK_BLUE}`,
   },
 });

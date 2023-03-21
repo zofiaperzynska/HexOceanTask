@@ -14,3 +14,9 @@ export const DISHES: Dish[] = [
     value: "sandwich",
   },
 ];
+
+export const DEFAULT_SLIDER_VALUE = 3;
+
+export const FLOAT_REGEX = /^(0|[1-9]\d*)(\.\d{0,2})?$/;
+
+export const INTEGER_REGEX = /^[1-9][0-9]*$/;
